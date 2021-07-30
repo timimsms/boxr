@@ -10,13 +10,13 @@ module Boxr
       file
     end
 
-    def apply_watermark_on_file(file)
+    def apply_watermark_on_file(file, imprint: "default")
 
       file_id = ensure_id(file)
       uri = "#{FILES_URI}/#{file_id}/watermark"
 
       attributes = {}
-      attributes[:watermark] = {:imprint => "default"}
+      attributes[:watermark] = {:imprint => imprint}
 
       file, response = put(uri, attributes, content_type: "application/json")
       file
